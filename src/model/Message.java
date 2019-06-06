@@ -1,0 +1,57 @@
+package model;
+
+public class Message {
+    private Integer id;
+    private Integer fromId;
+    private Integer toId;
+    private String content;
+    private boolean readStatus;
+
+    public Message(Integer id, Integer fromId, Integer toId, String content, boolean readStatus) {
+        this.id = id;
+        this.fromId = fromId;
+        this.toId = toId;
+        this.content = content;
+        this.readStatus = readStatus;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getFromId() {
+        return fromId;
+    }
+
+    public void setFromId(Integer fromId) {
+        this.fromId = fromId;
+    }
+
+    public Integer getToId() {
+        return toId;
+    }
+
+    public void setToId(Integer toId) {
+        this.toId = toId;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public boolean isReadStatus() {
+        return readStatus;
+    }
+
+    public void setReadStatus(boolean readStatus) {
+        this.readStatus = readStatus;
+    }
+}
