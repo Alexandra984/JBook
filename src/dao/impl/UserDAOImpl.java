@@ -132,6 +132,28 @@ public class UserDAOImpl implements UserDAO {
         dbServiceInstance.returnConnection(connection);
     }
 
+    @Override
+    public User getUserByUsername(String username) throws SQLException, NotFoundException {
+        Connection connection = dbServiceInstance.getConnection();
+        PreparedStatement statement = connection.prepareStatement("select * from user where username=?");
+        statement.setString(1, username);
+        ResultSet resultSet = statement.executeQuery();
+        if (!resultSet.next())
+            throw new NotFoundException("User not found");
+
+        int id = resultSet.getInt(1);
+        String hashedPassword = resultSet.getString(3);
+        String firstName = resultSet.getString(4);
+        String lastName = resultSet.getString(5);
+        String bio = resultSet.getString(6);
+        String profileImagePath = resultSet.getString(7);
+
+        User result = new User(id, username, hashedPassword, firstName, lastName, bio, profileImagePath);
+
+        dbServiceInstance.returnConnection(connection);
+        return result;
+    }
+
     public static void main(String[] args) throws NotFoundException, SQLException {
         UserDAO userDAO = new UserDAOImpl();
         User user = userDAO.getUserById(1);

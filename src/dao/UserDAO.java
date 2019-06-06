@@ -13,4 +13,5 @@ public interface UserDAO {
     void updateProfileImage(int userId, String path) throws SQLException;
     void createPost(int userId, Post post) throws SQLException;
     void createUser(User user) throws SQLException;
+    User getUserByUsername(String username) throws SQLException, NotFoundException;
 }
