@@ -34,10 +34,12 @@ public class MessageDAOImpl implements MessageDAO {
         List<Message> messages = new ArrayList<>();
         while (resultSet.next()) {
             int id = resultSet.getInt(1);
+            int from = resultSet.getInt(2);
+            int to = resultSet.getInt(3);
             String content = resultSet.getString(4);
             boolean readStatus = resultSet.getBoolean(5);
             Date date = resultSet.getDate(6);
-            messages.add(new Message(id, fromId, toId, content, readStatus, date));
+            messages.add(new Message(id, from, to, content, readStatus, date));
         }
 
         dbServiceInstance.returnConnection(connection);
